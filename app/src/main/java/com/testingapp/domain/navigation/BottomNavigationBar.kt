@@ -1,6 +1,7 @@
 package com.testingapp.domain.navigation
 
 import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.BottomAppBarDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
@@ -9,7 +10,9 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -27,12 +30,13 @@ fun BottomNavBar(modifier: Modifier = Modifier, navController: NavController) {
         )
     }
 
-    BottomAppBar {
+    BottomAppBar(contentPadding = BottomAppBarDefaults.ContentPadding) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentDestination = navBackStackEntry?.destination
 
         bottomScreens.forEach { screen ->
-            val isSelected = currentDestination?.hierarchy?.any { it.route == screen.route::class.qualifiedName } == true
+            val isSelected =
+                currentDestination?.hierarchy?.any { it.route == screen.route::class.qualifiedName } == true
 
             NavigationBarItem(
                 selected = isSelected,
@@ -52,7 +56,7 @@ fun BottomNavBar(modifier: Modifier = Modifier, navController: NavController) {
 
                 }, label = {
                     Text(
-                        text = screen.name,
+                        text = LocalContext.current.getString(screen.label),
                         color = if (isSelected) Color.Blue else Color.Gray
                     )
                 },

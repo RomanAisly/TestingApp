@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">TestingApp</string>
+    <string name="nav_item_home">Home</string>
+    <string name="nav_item_favourites">Favourites</string>
+    <string name="nav_item_responses">Responses</string>
+    <string name="nav_item_messages">Messages</string>
+    <string name="nav_item_profile">Profile</string>
+    <string name="vacancies_for_you">Vacancies for you</string>
+    <string name="post_keywords">Post, keywords</string>
 </resources>

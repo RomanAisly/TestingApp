@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Тестовое</string>
+    <string name="nav_item_home">Поиск</string>
+    <string name="nav_item_favourites">Избранное</string>
+    <string name="nav_item_responses">Отклики</string>
+    <string name="nav_item_messages">Сообщения</string>
+    <string name="nav_item_profile">Профиль</string>
+    <string name="vacancies_for_you">Вакансии для вас</string>
+    <string name="post_keywords">Должность, ключевые слова</string>
+</resources>
