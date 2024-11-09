@@ -1,5 +1,9 @@
 package com.testingapp.domain.navigation
 
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -18,26 +22,47 @@ import com.testingapp.ui.screens.ResponsesScreen
 fun NavGraph(modifier: Modifier = Modifier, navHostController: NavHostController) {
     Scaffold(bottomBar = { BottomNavBar(navController = navHostController) }) { innerPadding ->
         NavHost(
+            modifier = modifier.padding(innerPadding),
             navController = navHostController,
-            startDestination = BottomScreens.Home,
-            modifier = modifier.padding(innerPadding)
+            startDestination = HomeNavScreen,
+            enterTransition = {
+                slideInHorizontally(
+                    initialOffsetX = { 900 },
+                    animationSpec = tween(
+                        durationMillis = 1200,
+                        easing = FastOutSlowInEasing
+                    )
+                )
+            },
+            exitTransition = {
+                slideOutHorizontally(
+                    targetOffsetX = { 900 },
+                    animationSpec = tween(
+                        durationMillis = 1200,
+                        easing = FastOutSlowInEasing
+                    )
+                )
+            }
+
         ) {
-            composable<BottomScreens.Home> {
+            composable<HomeNavScreen> {
                 HomeScreen()
             }
-            composable<BottomScreens.Favourites> {
+            composable<FavouritesNavScreen> {
                 FavoritesScreen()
             }
-            composable<BottomScreens.Responses> {
+            composable<ResponsesNavScreen> {
                 ResponsesScreen()
             }
-            composable<BottomScreens.Messengers> {
+            composable<MessengersNavScreen> {
                 MessengersScreen()
             }
-            composable<BottomScreens.Profile> {
+            composable<ProfileScreen> {
                 ProfileScreen()
             }
+
         }
 
     }
+
 }
