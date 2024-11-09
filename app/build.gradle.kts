@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
     alias(libs.plugins.compose.compiler)
-    kotlin("plugin.serialization")
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -51,7 +51,6 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-    buildToolsVersion = "34.0.0"
 }
 
 dependencies {
@@ -73,7 +72,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation(libs.hitl.android)
-    implementation(libs.hilt.navigation)
     ksp(libs.hilt.android.compiler)
     implementation(libs.room.ktx)
     implementation(libs.room.runtime)
@@ -82,6 +80,7 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter)
     implementation(libs.okhttp)
+    implementation(libs.okhttp.logging)
     implementation(libs.kotlinx.serialization)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.material.icons.extended)
